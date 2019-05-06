@@ -13,6 +13,14 @@ public class DAOCrud {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void drop() {
+		DBConnection db = new DBConnection();
+
+		/**** Get collection / table from 'bibitem' ****/
+		// if collection doesn't exists, MongoDB will create it for you
+		DBCollection table = db.Connection().getCollection("bibitem");
+		table.drop();
+	}
 	public void insert(LinkedList<HashMap<String, String>> l) {
 		DBConnection db = new DBConnection();
 
@@ -22,12 +30,13 @@ public class DAOCrud {
 
 		/**** Insert ****/
 
-		for (HashMap<String, String> key : l) {
+		for (HashMap<String, String> doc : l) {
 			// create a document to store key and value
 			BasicDBObject document = new BasicDBObject();
 			
-			for (String k : key.keySet()) 
-				document.put(k, key.get(k));
+			for (String k : doc.keySet()) {
+				document.put(k, doc.get(k));
+			}
 			table.insert(document);
 		}
 	}
