@@ -1,6 +1,8 @@
 package it.mongo.java;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import it.mongo.java.util.db.DAOCrud;
 import it.mongo.java.util.file.FileHandler;
@@ -35,8 +37,8 @@ public class MongoJavaExe {
 
 			}
 			if(s.contains("=")) {
-				s.replaceAll("\\s+", "").replaceAll("\\{", "").replaceAll("\\}", "").replaceAll(",", "");
-				hm.put(s.split("=")[0], s.split("=")[1]);
+				s=s.replaceAll("[{}]", " ").replace(",", "").replaceAll("\"", "");
+				hm.put(s.split("=")[0].replaceAll("\\s+", ""), s.split("=")[1].trim());
 			}
 			
 			if(s.replaceAll("\\s+", "").equals("}")) 			
