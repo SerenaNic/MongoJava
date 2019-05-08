@@ -7,7 +7,6 @@ import it.mongo.java.util.file.FileHandler;
 public class MongoJavaExe {
 
 
-
 	/**
 	 * Java + MongoDB
 	 * 
@@ -18,7 +17,7 @@ public class MongoJavaExe {
 		
 		DAOCrud dao = new DAOCrud();
 		
-		dao.drop();
+//	dao.drop();
 		FileHandler f = new FileHandler();
 		f.setFileHandler("bibliografia.bib", null);
 
@@ -30,12 +29,15 @@ public class MongoJavaExe {
 				
 				hm = new LinkedHashMap<String, String>();
 				hm.put("typeCitation", s.split("\\{")[0].toLowerCase().replace(",", ""));
-				hm.put("nameCitation", s.split("\\{")[1].replace(",", ""));
+			
+			
+					hm.put("nameCitation", s.split("\\{")[1].replace(",", ""));
 
 			}
 			if(s.contains("=")) {
 				s=s.replaceAll("[{}]", " ").replace(",", "").replaceAll("\"", "");
 				hm.put(s.split("=")[0].trim(), s.split("=")[1].trim());
+				
 			}
 			
 			if(s.replaceAll("\\s+", "").equals("}")) 			
