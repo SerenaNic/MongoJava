@@ -30,7 +30,7 @@ public class MongoJavaPuntuale {
 
 			}
 			if(s.contains("=")) {
-				s=s.replaceAll("[{}]", " ").replace(",", "").replaceAll("\"", "");
+				s=s.replaceAll("[{}]", " ").replace("\n,", "").replaceAll("\"", "");
 				hm.put(s.split("=")[0].trim(), s.split("=")[1].trim());
 
 			}
